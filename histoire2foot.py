@@ -214,10 +214,6 @@ def est_bien_trie(liste_matchs):
 #print(est_bien_trie(liste3))
 
 
-
-
-
-
 def fusionner_matchs(liste_matchs1, liste_matchs2):
     """Fusionne deux listes de matchs triées sans doublons en une liste triée sans doublon
     sachant qu'un même match peut être présent dans les deux listes
@@ -360,8 +356,8 @@ def equipe_gagnante_liste(liste_matchs):
             res.append(0)
     return res
 
-print(equipe_gagnante_liste(liste2))
-print(equipe_gagnante_liste(liste1))
+#print(equipe_gagnante_liste(liste2))
+#print(equipe_gagnante_liste(liste1))
 #print(equipe_gagnante_liste(liste4))
 assert equipe_gagnante_liste(liste1) == [0, "France", "France", "France"]
 
@@ -406,10 +402,10 @@ def nb_matchs_sans_defaites(liste_matchs, equipe):
             cpt=0
     return max
 
-print(nb_matchs_sans_defaites(liste2, "England"))
-print(nb_matchs_sans_defaites(liste1, "France"))
-print(nb_matchs_sans_defaites(liste4, "Argentina"))
-
+#print(nb_matchs_sans_defaites(liste2, "England"))
+#print(nb_matchs_sans_defaites(liste1, "France"))
+#print(nb_matchs_sans_defaites(liste4, "Argentina"))
+assert nb_matchs_sans_defaites(liste2, "England") == 2
 
 
 def charger_matchs(nom_fichier):
@@ -458,6 +454,7 @@ def equipe_perdente_liste(liste_matchs):
     return res
 
 #print(equipe_perdente_liste(liste2))
+print(equipe_perdente_liste(liste1))
 
 def plus_de_victoires_que_defaites(liste_matchs, equipe):
     """vérifie si une équipe donnée a obtenu plus de victoires que de défaites
@@ -471,7 +468,7 @@ def plus_de_victoires_que_defaites(liste_matchs, equipe):
     nb_gagne=0
     nb_perd=0
     for i in range(len(equipe_gagnante_liste(liste_matchs))):
-        if equipe_perdente_liste(liste_matchs)[i] == equipe:
+        if equipe_gagnante_liste(liste_matchs)[i] == equipe:
             nb_gagne+=1
     for i in range(len(equipe_perdente_liste(liste_matchs))):
         if equipe_perdente_liste(liste_matchs)[i] == equipe:
@@ -481,8 +478,8 @@ def plus_de_victoires_que_defaites(liste_matchs, equipe):
     else:
         return False
 
-#print(plus_de_victoires_que_defaites(liste2, "England"))
-
+#print(plus_de_victoires_que_defaites(liste2, "Scotland"))
+#print(plus_de_victoires_que_defaites(liste1, "France"))
 
 def matchs_spectaculaires(liste_matchs):
     """retourne la liste des matchs les plus spectaculaires, c'est à dire les
