@@ -225,18 +225,19 @@ def fusionner_matchs(liste_matchs1, liste_matchs2):
     Returns:
         list: la liste triée sans doublon comportant tous les matchs de liste_matchs1 et liste_matchs2
     """
-#CODE PAS BON
-""" res=[]
-    for i in range(-1,len(liste_matchs1)):
-        for j in range (-1,(len(liste_matchs2))):
-            if liste_matchs1[i][0] <= liste_matchs2[j][0]:
-                if liste_matchs1[i][0] == liste_matchs2[j][0] and liste_matchs1[i][1] <= liste_matchs2[j][1]:
-                    res.append(liste_matchs1[i])
-            else:
-                res.append(liste_matchs2[j])
-    return res       """
-#pas bon
-#print(fusionner_matchs(liste1,liste2))
+    res=[]
+    ind1 = 0 
+    ind2 = 2
+    while ind1 < len(liste_matchs1) and ind2 < len(liste_matchs2) :
+        if liste_matchs1[ind1] < liste_matchs2[ind2]:
+            res.append(liste1[ind1])
+            ind1 += 1
+        else:
+            res.append(liste2[ind2])
+            ind2 += 1
+    
+
+print(fusionner_matchs(liste1,liste2))
 
 
 
@@ -490,9 +491,22 @@ def matchs_spectaculaires(liste_matchs):
     Returns:
         list: la liste des matchs les plus spectaculaires
     """
-    ...
+    max=0
+    total_but=0
+    rep=[]
+    for i in range(len(liste_matchs)):
+        total_but=liste_matchs[i][3] + liste_matchs[i][4]
+        if total_but > max:
+            max=total_but
+    for j in range(len(liste_matchs)):
+        total_but=liste_matchs[j][3] + liste_matchs[j][4]
+        if total_but == max:
+            rep.append(liste_matchs[j])
+    return rep
 
-    
+#print(matchs_spectaculaires(liste3))
+
+
 
 
 def liste_nbre_defaite(liste_matchs):
@@ -520,7 +534,7 @@ def liste_nbre_defaite(liste_matchs):
     return defaite_equipe
 
 #print(liste_nbre_defaite(liste1))
-print(liste_nbre_defaite(liste2))
+#print(liste_nbre_defaite(liste2))
 
 
 def meilleures_equipes(liste_matchs):
@@ -543,7 +557,7 @@ def meilleures_equipes(liste_matchs):
     return rep
 
 
-print(meilleures_equipes(liste2))
+#print(meilleures_equipes(liste2))
 assert meilleures_equipes(liste2) == ['England']
 
 
