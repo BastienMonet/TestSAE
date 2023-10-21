@@ -346,7 +346,7 @@ def liste_des_equipes(liste_matchs):
             rep.append(liste_matchs[i][2])
     return rep
 
-print(liste_des_equipes(liste1))
+#print(liste_des_equipes(liste1))
 
 ###
 def equipe_gagnante_liste(liste_matchs):
@@ -466,7 +466,7 @@ def equipe_perdente_liste(liste_matchs):
     return res
 
 #print(equipe_perdente_liste(liste2))
-print(equipe_perdente_liste(liste1))
+#print(equipe_perdente_liste(liste1))
 
 def plus_de_victoires_que_defaites(liste_matchs, equipe):
     """vérifie si une équipe donnée a obtenu plus de victoires que de défaites
