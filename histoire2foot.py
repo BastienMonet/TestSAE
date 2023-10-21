@@ -327,14 +327,14 @@ def liste_des_equipes(liste_matchs):
         list: une liste de str contenant le noms des équipes ayant jouer des matchs
     """
     rep=[]
-    for i in range(1,len(liste_matchs)):
+    for i in range(len(liste_matchs)):
         if liste_matchs[i][1] not in rep:
             rep.append(liste_matchs[i][1])
-        elif liste_matchs[i][2] not in rep:
+        if liste_matchs[i][2] not in rep:
             rep.append(liste_matchs[i][2])
     return rep
 
-#print(liste_des_equipes(liste2))
+print(liste_des_equipes(liste1))
 
 ###
 def equipe_gagnante_liste(liste_matchs):
@@ -503,8 +503,22 @@ def meilleures_equipes(liste_matchs):
     Returns:
         list: la liste des équipes qui ont le plus petit nombre de defaites
     """
-    ...
+    defaite_equipe=[]
+    ind1 = 0
+    ind2 = 0
+    nbre_defaite=0
+    while ind1 < len(equipe_perdente_liste(liste_matchs)) and ind2 < len(liste_des_equipes(liste_matchs)):
+        if equipe_perdente_liste(liste_matchs)[ind1] == liste_des_equipes(liste_matchs)[ind2]:
+            nbre_defaite+=1
+        ind1+=1
+        if ind1 > len(equipe_perdente_liste(liste_matchs))-1:
+            ind2+=1
+            defaite_equipe.append(nbre_defaite)
+            nbre_defaite=0
+            ind1=0
+    return defaite_equipe
 
+print(meilleures_equipes(liste1))
 
 
 
