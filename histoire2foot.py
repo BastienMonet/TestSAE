@@ -253,7 +253,6 @@ def resultats_equipe(liste_matchs, equipe):
     victoire=0
     defaites=0
     nul=0
-#CODE POURRI
     for i in range(len(liste_matchs)):
         if liste_matchs[i][1] == equipe:
             if liste_matchs[i][3] > liste_matchs[i][4]:
@@ -493,16 +492,18 @@ def matchs_spectaculaires(liste_matchs):
     """
     ...
 
+    
 
-def meilleures_equipes(liste_matchs):
-    """retourne la liste des équipes de la liste qui ont le plus petit nombre de defaites
+
+def liste_nbre_defaite(liste_matchs):
+    """créer un liste qui retourne le nombre des défaites de chaque équipe
 
     Args:
-        liste_matchs (list): une liste de matchs
+        liste_matchs (list): Une liste des matchs
 
     Returns:
-        list: la liste des équipes qui ont le plus petit nombre de defaites
-    """
+        Liste: Retourne le nombre des défaites de chaque équipe
+    """    
     defaite_equipe=[]
     ind1 = 0
     ind2 = 0
@@ -518,8 +519,32 @@ def meilleures_equipes(liste_matchs):
             ind1=0
     return defaite_equipe
 
-print(meilleures_equipes(liste1))
+#print(liste_nbre_defaite(liste1))
+print(liste_nbre_defaite(liste2))
 
+
+def meilleures_equipes(liste_matchs):
+    """retourne la liste des équipes de la liste qui ont le plus petit nombre de defaites
+
+    Args:
+        liste_matchs (list): une liste de matchs
+
+    Returns:
+        list: la liste des équipes qui ont le plus petit nombre de defaites
+    """
+    rep=[]
+    min=99999999999
+    for i in range(len(liste_nbre_defaite(liste_matchs))):
+        if liste_nbre_defaite(liste_matchs)[i] < min:
+            min=liste_nbre_defaite(liste_matchs)[i]
+    for j in range(len(liste_nbre_defaite(liste_matchs))):
+        if liste_nbre_defaite(liste_matchs)[j] == min:
+            rep.append(liste_des_equipes(liste_matchs)[j])
+    return rep
+
+
+print(meilleures_equipes(liste2))
+assert meilleures_equipes(liste2) == ['England']
 
 
 
