@@ -227,17 +227,29 @@ def fusionner_matchs(liste_matchs1, liste_matchs2):
     """
     res=[]
     ind1 = 0 
-    ind2 = 2
+    ind2 = 0 
     while ind1 < len(liste_matchs1) and ind2 < len(liste_matchs2) :
         if liste_matchs1[ind1] < liste_matchs2[ind2]:
-            res.append(liste1[ind1])
+            res.append(liste_matchs1[ind1])
             ind1 += 1
         else:
-            res.append(liste2[ind2])
+            res.append(liste_matchs2[ind2])
             ind2 += 1
     
+    if ind1 < len(liste_matchs1):
+        while ind1 < len(liste_matchs1):
+            res.append(liste_matchs1[ind1])
+            ind1 += 1
+    
+    if ind2 < len(liste_matchs2):
+        while ind2 < len(liste_matchs2):
+            res.append(liste_matchs2[ind2])
+            ind2 += 1
 
-print(fusionner_matchs(liste1,liste2))
+    return res
+
+
+#print(fusionner_matchs(liste1,liste2))
 
 
 
@@ -504,7 +516,7 @@ def matchs_spectaculaires(liste_matchs):
             rep.append(liste_matchs[j])
     return rep
 
-#print(matchs_spectaculaires(liste3))
+#print(matchs_spectaculaires(liste2))
 
 
 
