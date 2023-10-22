@@ -144,6 +144,8 @@ def nb_buts_marques(match):
     return match[3] + match[4]
 
 #print(nb_buts_marques(match1))
+#print(nb_buts_marques(match2))
+#print(nb_buts_marques(match3))
 
 
 def matchs_ville(ville, liste_matchs):
@@ -159,10 +161,11 @@ def matchs_ville(ville, liste_matchs):
     res=[]
     for i in range(len(liste_matchs)):
         if ville in liste_matchs[i][6]:
-            res.append(liste_matchs[i][6])
+            res.append(liste_matchs[i])
     return res
 
 #print(matchs_ville("Lyon",liste1))
+#print(matchs_ville("Liverpool",liste2))
 
 
 def nombre_moyen_buts(liste_matchs, nom_competition):
@@ -210,8 +213,8 @@ def est_bien_trie(liste_matchs):
     else:
         return False
 
-            
-#print(est_bien_trie(liste3))
+print(est_bien_trie(liste1))
+print(est_bien_trie(liste2))
 
 
 def fusionner_matchs(liste_matchs1, liste_matchs2):
@@ -261,7 +264,7 @@ def resultats_equipe(liste_matchs, equipe):
         equipe (str): le nom d'une équipe (pays)
 
     Returns:
-        tuple: un triplet d'entiers contenant le nombre de victoires, nuls et défaites de l'équipe
+        tuple: un quadriplet d'entiers contenant, l'équipe choisi, le nombre de victoires, nuls et défaites de l'équipe
     """    
     victoire=0
     defaites=0
@@ -283,7 +286,7 @@ def resultats_equipe(liste_matchs, equipe):
                 nul+=1
     return equipe, victoire, defaites, nul 
 
-#print(resultats_equipe(liste1,"France"))
+#print(resultats_equipe(liste1,"Romania"))
 
 def ecart_score(liste_matchs):
     """Retourne l'écart relatif deu nombre de but d'une liste
@@ -325,7 +328,8 @@ def plus_gros_scores(liste_matchs):
             position = i
     return liste_matchs[position]
 
-#print(plus_gros_scores(liste2))
+#print(plus_gros_scores(liste3))
+
 
 
 def liste_des_equipes(liste_matchs):
@@ -346,7 +350,7 @@ def liste_des_equipes(liste_matchs):
             rep.append(liste_matchs[i][2])
     return rep
 
-#print(liste_des_equipes(liste1))
+print(liste_des_equipes(liste1))
 
 ###
 def equipe_gagnante_liste(liste_matchs):
@@ -389,7 +393,7 @@ def premiere_victoire(liste_matchs, equipe):
             return liste_matchs[i][0]
     return None
         
-#print(premiere_victoire(liste2,"England"))
+#print(premiere_victoire(liste1,"Romania"))
 assert premiere_victoire(liste2, "England") == "1901-03-09"
 ###
 ###
