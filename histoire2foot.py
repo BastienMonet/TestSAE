@@ -213,8 +213,8 @@ def est_bien_trie(liste_matchs):
     else:
         return False
 
-print(est_bien_trie(liste1))
-print(est_bien_trie(liste2))
+#print(est_bien_trie(liste1))
+#print(est_bien_trie(liste2))
 
 
 def fusionner_matchs(liste_matchs1, liste_matchs2):
@@ -350,7 +350,7 @@ def liste_des_equipes(liste_matchs):
             rep.append(liste_matchs[i][2])
     return rep
 
-print(liste_des_equipes(liste1))
+#print(liste_des_equipes(liste1))
 
 ###
 def equipe_gagnante_liste(liste_matchs):
