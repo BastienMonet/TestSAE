@@ -95,6 +95,11 @@ liste5 = [('1970-04-28', 'France', 'Bulgaria', 1, 1, 'Friendly', 'Rouen', 'Franc
 
 # Fonctions à implémenter dont les tests sont fournis
 
+def lire_liste4(liste4): #juste un test
+    res=[]
+    res= liste4
+    return res
+
 
 def equipe_gagnante(match):
     """retourne le nom de l'équipe qui a gagné le match. Si c'est un match nul on retourne None
