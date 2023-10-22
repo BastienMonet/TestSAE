@@ -433,7 +433,14 @@ def charger_matchs(nom_fichier):
     Returns:
         list: la liste des matchs du fichier
     """    
-    ...
+    res = []
+    fic = open(nom_fichier,'r')
+    fic.readline()
+    for ligne in fic:
+        l_champs = ligne.split(",")
+        res.append((l_champs[0], l_champs[1], (l_champs[2]), int(l_champs[3]), int(l_champs[4]),l_champs[5], l_champs[6], (l_champs[7])))
+        fic.close()
+    return res
 
 
 def sauver_matchs(liste_matchs,nom_fichier):
@@ -446,7 +453,11 @@ def sauver_matchs(liste_matchs,nom_fichier):
     Returns:
         None: cette fonction ne retourne rien
     """    
-    ...
+    fic = open(nom_fichier, 'w')
+    for ind in range(len(liste_matchs)):
+        ligne = 'ind '+str(ind)+' val '+str(liste_matchs[ind])+'\n'
+        fic.write(ligne)
+    fic.close()
 
 
 # Fonctions à implémenter dont il faut également implémenter les tests

@@ -3,13 +3,20 @@ import histoire2foot
 
 
 # Ici vos fonctions dédiées aux interactions
-wait = input()
+intro_nom = False
 name = input("Bonjour, quel est votre nom?\n")
-fin_intro = False
+while intro_nom == False:
+    print('est ce que votre nom est bien', name ,"?")
+    is_it_true = input("tapper \"y\" si oui\n")
+    if is_it_true == "y":
+        print("enchanté" , name , "!\n")
+        intro_nom == True
+    else:
+        name = input("Oh, alors quel est votre nom?\n")
 
-print("enchanté" , name , "!\n" , wait)
-print("Bienvenue Dans le Terminal Python match !\n", wait)
-fin_intro = True
+    print("bienvenue dans le terminal python bash, ici tu peut retrouver tout tes matchs\n favoris.")
+    wait = input("appuyer sur une touche pour continuer") 
+
 
 
 # ici votre programme principal
