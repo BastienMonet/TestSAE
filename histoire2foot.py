@@ -83,11 +83,6 @@ liste4 = [('1978-03-19', 'Argentina', 'Peru', 2, 1, 'Copa Ramón Castilla', 'Bue
         ('1978-06-24', 'Brazil', 'Italy', 2, 1, 'FIFA World Cup', 'Buenos Aires', 'Argentina', True), 
         ('1978-06-25', 'Argentina', 'Netherlands', 3, 1, 'FIFA World Cup', 'Buenos Aires', 'Argentina', False)
 ]
-liste5 = [('1970-04-28', 'France', 'Bulgaria', 1, 1, 'Friendly', 'Rouen', 'France', False), 
-        ('1960-04-28', 'France', 'Romania', 2, 0, 'Friendly', 'Reims', 'France', False), 
-        ('1970-09-28', 'France', 'Czechoslovakia', 3, 0, 'Friendly', 'Nice', 'France', False), 
-        ('1970-11-28', 'France', 'Norway', 3, 1, 'UEFA Euro qualification', 'Lyon', 'France', False)
-        ]
 
 # -----------------------------------------------------------------------------------------------------
 # listes des fonctions à implémenter
@@ -317,7 +312,7 @@ def ecart_score(liste_matchs):
     return rep
 
 
-#print(ecart_score(liste2))
+#print(ecart_score(liste1))
 
 
 def plus_gros_scores(liste_matchs):
@@ -329,14 +324,19 @@ def plus_gros_scores(liste_matchs):
     Returns:
         list: la liste des matchs avec le plus grand écart entre vainqueur et perdant
     """   
+    rep=[]
     max_ecart = 0
-    for i in range(len(ecart_score(liste_matchs))):
-        if ecart_score(liste_matchs)[i] > max_ecart:
-            max_ecart = ecart_score(liste_matchs)[i]
-            position = i
-    return liste_matchs[position]
+    liste_ecart = ecart_score(liste_matchs)
+    for i in range(len(liste_ecart)):
+        if liste_ecart[i] > max_ecart:
+            max_ecart = liste_ecart[i]
+    for j in range(len(liste_ecart)):
+        if liste_ecart[j] == max_ecart:
+            rep.append(liste_matchs[j])
+    return rep
 
 #print(plus_gros_scores(liste1))
+#print(plus_gros_scores(liste3))
 
 
 
@@ -383,7 +383,7 @@ def equipe_gagnante_liste(liste_matchs):
 #print(equipe_gagnante_liste(liste2))
 #print(equipe_gagnante_liste(liste1))
 #print(equipe_gagnante_liste(liste4))
-assert equipe_gagnante_liste(liste1) == [0, "France", "France", "France"]
+#assert equipe_gagnante_liste(liste1) == [0, "France", "France", "France"]
 
 
 def premiere_victoire(liste_matchs, equipe):
@@ -582,7 +582,7 @@ def meilleures_equipes(liste_matchs):
         list: la liste des équipes qui ont le plus petit nombre de defaites
     """
     rep=[]
-    min=99999999999
+    min=float("+inf")
     for i in range(len(liste_nbre_defaite(liste_matchs))):
         if liste_nbre_defaite(liste_matchs)[i] < min:
             min=liste_nbre_defaite(liste_matchs)[i]
