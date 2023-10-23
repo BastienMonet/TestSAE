@@ -33,7 +33,7 @@ while intro_tuto == True:
     if do == 'lire':
         do = input("\t//Que voullez vous lire?//\n")
         if do == 'tout':
-            print(histoire2foot.charger_matchs(histoire1.csv))
+            print(histoire2foot.charger_matchs("histoire1.csv"))
             print("\n")
             print("\n")
     else:

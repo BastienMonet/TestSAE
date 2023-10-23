@@ -260,7 +260,7 @@ def fusionner_matchs(liste_matchs1, liste_matchs2):
     return res
 
 
-print(fusionner_matchs(liste2,liste3))
+#print(fusionner_matchs(liste2,liste3))
 
 
 
