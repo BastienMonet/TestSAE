@@ -236,26 +236,30 @@ def fusionner_matchs(liste_matchs1, liste_matchs2):
     ind2 = 0 
     while ind1 < len(liste_matchs1) and ind2 < len(liste_matchs2) :
         if liste_matchs1[ind1] < liste_matchs2[ind2]:
-            res.append(liste_matchs1[ind1])
-            ind1 += 1
+            if liste_matchs1[ind1] not in res:
+                res.append(liste_matchs1[ind1])
+            ind1+=1
         else:
-            res.append(liste_matchs2[ind2])
-            ind2 += 1
+            if liste_matchs2[ind2] not in res:
+                res.append(liste_matchs2[ind2])
+            ind2+=1
     
     if ind1 < len(liste_matchs1):
         while ind1 < len(liste_matchs1):
-            res.append(liste_matchs1[ind1])
-            ind1 += 1
+            if liste_matchs1[ind1] not in res:
+                res.append(liste_matchs1[ind1])
+            ind1+=1
+
     
     if ind2 < len(liste_matchs2):
         while ind2 < len(liste_matchs2):
-            res.append(liste_matchs2[ind2])
-            ind2 += 1
-
+            if liste_matchs2[ind2] not in res:
+                res.append(liste_matchs2[ind2])
+            ind2+=1
     return res
 
 
-#print(fusionner_matchs(liste2,liste3))
+print(fusionner_matchs(liste2,liste3))
 
 
 
@@ -336,6 +340,7 @@ def plus_gros_scores(liste_matchs):
     return rep
 
 #print(plus_gros_scores(liste1))
+#print(plus_gros_scores(liste2))
 #print(plus_gros_scores(liste3))
 
 

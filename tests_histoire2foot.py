@@ -125,8 +125,8 @@ def test_resultats_equipe():
 def test_plus_gros_scores():
     assert histoire2foot.plus_gros_scores(liste1) == [('1970-09-05', 'France', 'Czechoslovakia', 3, 0, 'Friendly', 'Nice', 'France', False)]
     assert histoire2foot.plus_gros_scores(liste2) == [('1901-03-09', 'England', 'Wales', 6, 0, 'British Championship', 'Newcastle', 'England', False)]
-    assert histoire2foot.plus_gros_scores(liste3) == [('1903-04-04', 'Brazil', 'Argentina', 3, 0, 'Friendly', 'Sao Paulo', 'Brazil', False)]
-    ...
+    assert histoire2foot.plus_gros_scores(liste3) == [('1903-04-04', 'Brazil', 'Argentina', 3, 0, 'Friendly', 'Sao Paulo', 'Brazil', False), 
+                                                      ('1970-09-05', 'France', 'Czechoslovakia', 3, 0, 'Friendly', 'Nice', 'France', False)]
 
 #print(histoire2foot.plus_gros_scores(liste1))
       
@@ -182,6 +182,8 @@ def test_fusionner_matchs():
     assert histoire2foot.fusionner_matchs([],liste3) == liste3
     assert histoire2foot.fusionner_matchs(liste2,liste3) == liste_fus
 
-    def test_sauver_charger_matchs():
-        histoire2foot.sauver_matchs(liste2,"test_liste2.csv")
-        assert histoire2foot.charger_matchs("test_liste2.csv") == liste2
+
+
+def test_sauver_charger_matchs():
+    histoire2foot.sauver_matchs(liste2,"test_liste2.csv")
+    assert histoire2foot.charger_matchs("test_liste2.csv") == liste2
