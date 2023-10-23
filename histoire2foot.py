@@ -136,6 +136,9 @@ def victoire_a_domicile(match):
     return res
 
 #print(victoire_a_domicile(match1))
+#print(victoire_a_domicile(match2))
+#print(victoire_a_domicile(match3))
+
 
 def nb_buts_marques(match):
     """indique le nombre total de buts marqués lors de ce match
@@ -257,7 +260,7 @@ def fusionner_matchs(liste_matchs1, liste_matchs2):
     return res
 
 
-#print(fusionner_matchs(liste1,liste2))
+print(fusionner_matchs(liste2,liste3))
 
 
 
@@ -333,7 +336,7 @@ def plus_gros_scores(liste_matchs):
             position = i
     return liste_matchs[position]
 
-#print(plus_gros_scores(liste3))
+#print(plus_gros_scores(liste1))
 
 
 
@@ -459,9 +462,9 @@ def sauver_matchs(liste_matchs,nom_fichier):
         None: cette fonction ne retourne rien
     """    
     fic = open(nom_fichier, 'w')
-    for ind in range(len(liste_matchs)):
-        ligne = 'ind '+str(ind)+' val '+str(liste_matchs[ind])+'\n'
-        fic.write(ligne)
+    fic.write("date,home team,away team,home score,tournament,city,country,neutral\n")
+    for mat in liste_matchs:
+        fic.write(mat[0]+","+mat[1]+","+mat[2]+","+str(mat[3])+","+str(mat[4])+","+mat[5]+","+mat[6]+","+mat[7]+"\n")
     fic.close()
 
 
