@@ -18,7 +18,7 @@ liste1 = [('1970-04-28', 'France', 'Bulgaria', 1, 1, 'Friendly', 'Rouen', 'Franc
         ('1970-11-11', 'France', 'Norway', 3, 1, 'UEFA Euro qualification', 'Lyon', 'France', False)
         ]
 liste2 = [('1901-03-09', 'England', 'Northern Ireland', 3, 0, 'British Championship', 'Southampton', 'England', False), 
-        ('1901-03-09', 'England', 'Wales', 6, 0, 'British Championship', 'Newcastle', 'England', False), 
+        ('1901-03-18', 'England', 'Wales', 6, 0, 'British Championship', 'Newcastle', 'England', False), 
         ('1901-03-30', 'England', 'Scotland', 2, 2, 'British Championship', 'London', 'England', False), 
         ('1902-05-03', 'England', 'Scotland', 2, 2, 'British Championship', 'Birmingham', 'England', False), 
         ('1903-02-14', 'England', 'Northern Ireland', 4, 0, 'British Championship', 'Wolverhampton', 'England', False), 
@@ -259,7 +259,7 @@ def fusionner_matchs(liste_matchs1, liste_matchs2):
     return res
 
 
-print(fusionner_matchs(liste2,liste3))
+#print(fusionner_matchs(liste2,liste3))
 
 
 
@@ -436,7 +436,6 @@ def nb_matchs_sans_defaites(liste_matchs, equipe):
 #print(nb_matchs_sans_defaites(liste4, "Argentina"))
 assert nb_matchs_sans_defaites(liste2, "England") == 2
 
-
 def charger_matchs(nom_fichier):
     """charge un fichier de matchs donné au format CSV en une liste de matchs
 
@@ -471,7 +470,12 @@ def sauver_matchs(liste_matchs,nom_fichier):
     for mat in liste_matchs:
         fic.write(mat[0]+","+mat[1]+","+mat[2]+","+str(mat[3])+","+str(mat[4])+","+mat[5]+","+mat[6]+","+mat[7]+"\n")
     fic.close()
+    return None
 
+def sauver_charger(liste_matchs,fichier):
+    rep = sauver_matchs(liste_matchs,fichier)
+    res = charger_matchs(fichier)
+    return rep,res
 
 # Fonctions à implémenter dont il faut également implémenter les tests
 def equipe_perdente_liste(liste_matchs):
