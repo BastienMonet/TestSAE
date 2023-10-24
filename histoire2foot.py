@@ -1,6 +1,8 @@
 """Fichier source de la SAE 1.01 partie 1
     Historique des matchs de football internationaux
     """
+import csv
+from datetime import datetime
 
 # ---------------------------------------------------------------------------------------------
 # Exemples de données pour vous aider à faire des tests
@@ -191,6 +193,24 @@ def nombre_moyen_buts(liste_matchs, nom_competition):
 
 #print(nombre_moyen_buts(liste2, "British Championship"))
 
+def nombre_moyen_buts_sans_argument(liste_matchs):
+    """retourne le nombre moyen de buts marqués dans toute la liste
+
+    Args:
+        liste_matchs (list): une liste de matchs
+    
+    Returns:
+        float: le nombre moyen de buts par match pour la compétition
+    """
+    somme=0
+    cpt=0
+    for i in range(len(liste_matchs)):
+            somme += int(liste_matchs[i][3]) + int(liste_matchs[i][4])
+            cpt += 1 
+    return somme / cpt
+
+#print(nombre_moyen_buts_tout(liste2))
+
 
 
 def est_bien_trie(liste_matchs):
@@ -296,7 +316,7 @@ def resultats_equipe(liste_matchs, equipe):
 #print(resultats_equipe(liste1,"Romania"))
 
 def ecart_score(liste_matchs):
-    """Retourne l'écart relatif deu nombre de but d'une liste
+    """Retourne une liste des écart relatif du nombre de but d'une liste de match
 
     Args:
         liste_matchs (tuple): une liste des matchs
@@ -446,12 +466,12 @@ def charger_matchs(nom_fichier):
         list: la liste des matchs du fichier
     """    
     res = []
-    fic = open(nom_fichier,'r')
+    fic = open(nom_fichier,'r',encoding='utf8')
     fic.readline()
     for ligne in fic:
         l_champs = ligne.split(",")
-        res.append((l_champs[0], l_champs[1], (l_champs[2]), int(l_champs[3]), int(l_champs[4]),l_champs[5], l_champs[6], (l_champs[7])))
-        fic.close()
+        res.append((l_champs[0], l_champs[1], (l_champs[2]), int(l_champs[3]), int(l_champs[4]),l_champs[5], l_champs[6], (l_champs[7]), (l_champs[8])))
+    fic.close()
     return res
 
 
@@ -465,12 +485,13 @@ def sauver_matchs(liste_matchs,nom_fichier):
     Returns:
         None: cette fonction ne retourne rien
     """    
-    fic = open(nom_fichier, 'w')
+    fic = open(nom_fichier, 'w',encoding="utf8")
     fic.write("date,home team,away team,home score,tournament,city,country,neutral\n")
     for mat in liste_matchs:
-        fic.write(mat[0]+","+mat[1]+","+mat[2]+","+str(mat[3])+","+str(mat[4])+","+mat[5]+","+mat[6]+","+mat[7]+"\n")
+        fic.write(mat[0]+","+mat[1]+","+mat[2]+","+str(mat[3])+","+str(mat[4])+","+mat[5]+","+mat[6]+","+mat[7]+","+mat[8])
     fic.close()
     return None
+
 
 def sauver_charger(liste_matchs,fichier):
     rep = sauver_matchs(liste_matchs,fichier)
@@ -605,4 +626,151 @@ def meilleures_equipes(liste_matchs):
 assert meilleures_equipes(liste2) == ['England']
 
 
+#def date_devient_int(date):   
 
+
+ 
+ 
+    #indice="0123456789"
+    #for elt in date:
+        #if elt == date:
+
+"""def requête_par_date(liste_matchs,date_debut,date_fin):
+    res=[]
+    test=None
+    for i in range(len(liste_matchs)):
+        if liste_matchs[i][0] >= date_debut and liste_matchs[i][0] <= date_fin:
+            res.append(liste_matchs)
+    return res
+
+print(requête_par_date(liste1,"1", "100000000"))"""
+
+
+def nb_buts_marques_liste(liste_matchs):
+    """indique le nombre total de buts marqués dans toute la liste
+
+    Args:
+        match (tuple): une liste de matchs
+
+    Returns:
+        int: le nombre de buts du match 
+    """
+    res=0
+    for i in range(len(liste_matchs)):
+        res += liste_matchs[i][3] + liste_matchs[i][4]
+    return res
+
+#print(nb_buts_marques_liste(liste1))
+assert nb_buts_marques_liste(liste1) == 11
+
+
+
+
+
+################################"AIMEZ VOUS LES COPIER COLLER?"#############################
+
+
+
+
+def liste_but(liste_matchs):
+    """Retourne une liste des but totaux marqué lors d'un match 
+
+    Args:
+        liste_matchs (tuple): une liste des matchs
+
+    Returns:
+        list: la liste du nombre total de but pendant un match
+    """
+    but=0
+    rep=[]
+    for i in range(len(liste_matchs)):
+            but =liste_matchs[i][3] + liste_matchs[i][4]
+            rep.append(but)
+    return rep
+
+#print(liste_but(liste1))
+
+
+def max_but(liste_matchs):
+    """retourne la liste des matchs dont le total des but marquer est le plus élever
+
+    Args:
+        liste_matchs (list): une liste de matchs
+
+    Returns:
+        list: la liste des matchs avec le total de but le plus élever
+    """   
+    rep=[]
+    max = 0
+    liste_max = liste_but(liste_matchs)
+    for i in range(len(liste_max)):
+        if liste_max[i] > max:
+            max = liste_max[i]
+    for j in range(len(liste_max)):
+        if liste_max[j] == max:
+            rep.append(liste_matchs[j])
+    return rep
+
+#print(max_but(liste1))
+
+
+def min_but(liste_matchs):
+    """retourne la liste des matchs dont le total des but marquer est le plus faible
+
+    Args:
+        liste_matchs (list): une liste de matchs
+
+    Returns:
+        list: la liste des matchs avec le total de but le plus faible
+    """   
+    rep=[]
+    min = float("+inf")
+    liste_min = liste_but(liste_matchs)
+    for i in range(len(liste_min)):
+        if liste_min[i] < min:
+            min = liste_min[i]
+    for j in range(len(liste_min)):
+        if liste_min[j] == min:
+            rep.append(liste_matchs[j])
+    return rep
+
+#print(min_but(liste1))
+
+def liste_des_tournois(liste_matchs):
+    """retourne la liste des tournoi des matchs de la liste 
+    Attention "Friendly" n'est pas un tournoi
+
+    Args:
+        liste_matchs (list): une liste de matchs
+
+    Returns:
+        list: une liste de str contenant le noms des tournois
+    """
+    rep=[]
+    for i in range(len(liste_matchs)):
+        if liste_matchs[i][5] not in rep and liste_matchs[i][5] != 'Friendly':
+            rep.append(liste_matchs[i][5])
+    return rep
+
+#print(liste_des_tournois(liste1))
+
+
+def liste_des_localisations(liste_matchs):
+    """retourne la liste des villes suivi des pays de la liste 
+    Attention "Friendly" n'est pas un tournoi
+
+    Args:
+        liste_matchs (list): une liste de matchs
+
+    Returns:
+        list: une liste de str contenant le noms des villes et des pays
+    """
+    rep=[]
+    for i in range(len(liste_matchs)):
+        if liste_matchs[i][6] not in rep:
+            rep.append(liste_matchs[i][6])
+            rep.append(liste_matchs[i][7])
+            rep.append("/")
+    return rep
+
+#print(liste_des_localisations(liste1))
