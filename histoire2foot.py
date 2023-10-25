@@ -839,3 +839,25 @@ def liste_des_localisations(liste_matchs):
 
 #print(liste_des_localisations(liste1))
 
+def liste_de_match_par_tournoi(tournoi,liste_matchs):
+    """retourne la liste des matchs joués par une équipes en paramètre 
+
+    Args:
+        equipe (str): le nom d'une equipe
+        liste_matchs (list): une liste de matchs
+
+    Returns:
+        list: une liste contenant le nom de tout les matchs dans lequel, l'equipe à participé
+    """
+    rep=[]
+    for i in range(len(liste_matchs)):
+        if liste_matchs[i][5]== tournoi:
+            rep.append(liste_matchs[i])
+
+def date_debut_tournoi(tournoi,liste_matchs):
+    rep=[]
+    rep.append(liste_matchs[0][0])
+    
+    
+    
+        

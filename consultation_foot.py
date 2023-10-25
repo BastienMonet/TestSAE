@@ -14,8 +14,6 @@ def formatage_liste_de(liste_res):
         res=print(elt)   
     return res
 
-def def_equipe(equipe,liste_simple):
-    print("L'equipe", equipe, "a joué", histoire2foot.nombre_de_match_joué() ,"")
 
 
     
@@ -31,32 +29,92 @@ nombre_but=None
 
 # Ici vos fonctions dédiées aux interactions
 print("\n////////////////////////////////////////////////////")
-recherche = input("Bonjour, Bienvenue dans le terminal python match quel information recherchez vous?\n 1-Recherche relative aux equipes (tapper \"equipes\")\n 2-Recherche relative aux matchs (tapper \"matchs\")\n 3-Paramètrage des fichier (tapper \"parametres\")\n 4-Quitter (tapper quitter)\n")
 while programme_tourne == True:
+    recherche = input("Bonjour, Bienvenue dans le terminal python match quel information recherchez vous?\n 1-Recherche relative aux equipes (tapper \"equipes\")\n 2-Recherche relative aux matchs (tapper \"matchs\")\n 3-Paramètrage des fichier (tapper \"parametres\")\n 4-Quitter (tapper quitter)\n")
     if recherche == "equipes":
         Menu_principal=1
+
         while Menu_principal==1:
-            recherche = input("Pour quel équipe voulez vous des informations? Si vous voulez connaitre le nom des equipes disponible, tappez \"noms\"\n")
+            recherche = input("Pour quel équipe voulez vous des informations?\n -Si vous voulez connaitre le nom des equipes disponible, tapper \"noms\"\n -Si vous voulez revenir en arrière, tapper \"retour\"\n")
 
             if recherche == "noms":
                 liste_res=histoire2foot.liste_des_equipes(liste_simple)
                 print(formatage_liste_de(liste_res))
                 liste_res=""
 
+            elif recherche== "retour":
+                Menu_principal=0
+
             elif recherche in histoire2foot.liste_des_equipes(liste_simple):
                 liste_complexe=histoire2foot.liste_de_match_par_equipe(recherche,liste_simple)
-                print(formatage_liste_de(liste_complexe))
+
                 nombre_matchs =histoire2foot.nombre_de_match_joué(recherche,liste_complexe)
                 nombre_but= histoire2foot.nb_buts_marques_liste(liste_complexe)
                 moyen_but= histoire2foot.nombre_moyen_buts_sans_argument(liste_complexe)
-                ecart_but=histoire2foot.ecart_score
                 premier_gagne=histoire2foot.premiere_victoire(liste_complexe, recherche)
                 ecart_score=histoire2foot.ecart_score_tout(liste_complexe)
-                print("L'equipe", recherche, "a joué",nombre_matchs ,"matchs depuis le debut, pour un total de", nombre_but,"but(s)\n -Nombre moyen de but:", moyen_but,"\n -date premier match gagné:",premier_gagne,"\n -ecart relatif de but:", ecart_score,"dans l'ordre" )
+                sans_défaite=histoire2foot.nb_matchs_sans_defaites(liste_complexe, recherche)
+                resultat=histoire2foot.resultats_equipe(liste_complexe,recherche)
 
+                print("L'equipe", recherche, "a joué",nombre_matchs ,"matchs depuis le debut, pour un total de", nombre_but,"but(s) marqués\n -Nombre moyen de but:", moyen_but,"\n -date premier match gagné:",premier_gagne,"\n -ecart relatif de but:", ecart_score,"\n -nombre maximum de matchs sans défaite:",sans_défaite,"\nDans l'ordre, nombres de victoire, nombre de défaite, nombre de matchs nul:\n\n\t",resultat,"\n")
+                is_it_true=input("voulez vous afficher la liste des match jouer par cette équipe? tapper oui si oui, tapper autre chose sinon\n")
+                if is_it_true == "oui":
+                    print(formatage_liste_de(liste_complexe))
             else:
-                print("Desoler, je ne connais pas l'équipe,", recherche)
+                print("Desoler, je ne connais pas l'équipe,\"", recherche, "\"penser bien à mettre une majuscule à la première lettre du nom de l'equipe\n" )
+
     elif recherche == "matchs":
+        Menu_principal=2
+
+        while Menu_principal==2:
+            recherche = input("Pour quel type de match voulez vous des renseignements?\n -Si vous voulez les matchs d'un tournoi précis, tapper \" tournois\"\n -Si vous voulez les matchs dans une localisation précise, tapper \"localisations\"\n")
+
+            if recherche == "tournois":
+                Menu_principal=2.1
+                while Menu_principal==2.1:
+                    recherche = input("Pour quel tournoi voulez vous des informations?\n -Si vous voulez connaitre le nom des tournois disponible, tapper \"noms\"\n -Si vous voulez revenir en arrière, tapper \"retour\"\n")
+
+                    if recherche=="noms":
+                        liste_res=histoire2foot.liste_des_tournois(liste_simple)
+                        print(formatage_liste_de(liste_res))
+                        liste_res=""
+
+                    elif recherche== "retour":
+                        Menu_principal=2
+
+                    elif recherche in histoire2foot.liste_des_equipes(liste_simple):
+                        liste_complexe=histoire2foot.liste_de_match_par_tournoi(recherche,liste_simple)
+
+                        nombre_matchs =histoire2foot.nombre_de_match_joué(recherche,liste_complexe)
+                        nombre_but= histoire2foot.nb_buts_marques_liste(liste_complexe)
+                        moyen_but= histoire2foot.nombre_moyen_buts_sans_argument(liste_complexe)
+                        premier_gagne=histoire2foot.premiere_victoire(liste_complexe, recherche)
+                        ecart_score=histoire2foot.ecart_score_tout(liste_complexe)
+                        sans_défaite=histoire2foot.nb_matchs_sans_defaites(liste_complexe, recherche)
+                        resultat=histoire2foot.resultats_equipe(liste_complexe,recherche)
+
+                        print("Le tournoi", recherche, "possède",nombre_matchs ,"matchs depuis le debut, pour un total de", nombre_but,"but(s) marqués\n -Nombre moyen de but:", moyen_but,"\n -date premier match gagné:",premier_gagne,"\n -ecart relatif de but:", ecart_score,"\n -nombre maximum de matchs sans défaite:",sans_défaite,"\nDans l'ordre, nombres de victoire, nombre de défaite, nombre de matchs nul:\n\n\t",resultat,"\n")
+                        is_it_true=input("voulez vous afficher la liste des match jouer par cette équipe? tapper oui si oui, tapper autre chose sinon\n")
+                        if is_it_true == "oui":
+                            print(formatage_liste_de(liste_complexe))
+
+                    
+
+
+
+
+            elif recherche == "localisation":
+                liste_res=histoire2foot.liste_des_localisations(liste_simple)
+                print(formatage_liste_de(liste_res))
+                liste_res=""
+
+            elif recherche== "retour":
+                        Menu_principal=0
+
+
+    else:
+        print("Veuiller réessayer, cela peut être dû à un problème d'orthographe\n")
+
         a=2
 
 
