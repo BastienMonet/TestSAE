@@ -470,7 +470,8 @@ def charger_matchs(nom_fichier):
     fic.readline()
     for ligne in fic:
         l_champs = ligne.split(",")
-        res.append((l_champs[0], l_champs[1], (l_champs[2]), int(l_champs[3]), int(l_champs[4]),l_champs[5], l_champs[6], (l_champs[7]), (l_champs[8])))
+        mbool = "T" in l_champs[8]
+        res.append((l_champs[0], l_champs[1], (l_champs[2]), int(l_champs[3]), int(l_champs[4]),l_champs[5], l_champs[6], (l_champs[7]), mbool))
     fic.close()
     return res
 
@@ -488,15 +489,16 @@ def sauver_matchs(liste_matchs,nom_fichier):
     fic = open(nom_fichier, 'w',encoding="utf8")
     fic.write("date,home team,away team,home score,tournament,city,country,neutral\n")
     for mat in liste_matchs:
-        fic.write(mat[0]+","+mat[1]+","+mat[2]+","+str(mat[3])+","+str(mat[4])+","+mat[5]+","+mat[6]+","+mat[7]+","+mat[8])
+        fic.write(mat[0]+","+mat[1]+","+mat[2]+","+str(mat[3])+","+str(mat[4])+","+mat[5]+","+mat[6]+","+mat[7]+","+str(mat[8])+"\n")
     fic.close()
-    return None
 
 
 def sauver_charger(liste_matchs,fichier):
-    rep = sauver_matchs(liste_matchs,fichier)
+    sauver_matchs(liste_matchs,fichier)
     res = charger_matchs(fichier)
-    return rep,res
+    return res
+
+print(sauver_charger(liste2,"test_liste2.csv"))
 
 # Fonctions à implémenter dont il faut également implémenter les tests
 def equipe_perdente_liste(liste_matchs):
@@ -635,7 +637,7 @@ assert meilleures_equipes(liste2) == ['England']
     #for elt in date:
         #if elt == date:
 
-"""def requête_par_date(liste_matchs,date_debut,date_fin):
+def requête_par_date(liste_matchs,date_debut,date_fin):
     res=[]
     test=None
     for i in range(len(liste_matchs)):
@@ -643,7 +645,7 @@ assert meilleures_equipes(liste2) == ['England']
             res.append(liste_matchs)
     return res
 
-print(requête_par_date(liste1,"1", "100000000"))"""
+#print(requête_par_date(liste1,"1", "100000000"))
 
 
 def nb_buts_marques_liste(liste_matchs):

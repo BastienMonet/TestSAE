@@ -40,6 +40,7 @@ with open("histoire1.csv", "r", encoding="utf8", errors='ignore') as file:
         if do == 'lire':
             do = input("\t//Avec quels paramètre voulez vous lire?//\n")
             if do == 'tout':
+                print("êtes vous sûr d'afficher TOUT les matchs")
                 is_it_true = input("\t//tapper \"y\" si oui//\n")
                 if is_it_true == "y":
                     is_it_true == None

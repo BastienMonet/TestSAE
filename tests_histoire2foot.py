@@ -185,4 +185,6 @@ def test_fusionner_matchs():
 
 
 def test_sauver_charger_matchs():
-    assert histoire2foot.sauver_charger(liste2,"test_liste2.csv") == None, liste2
+    assert histoire2foot.sauver_charger(liste1,"test_liste2.csv") == liste1
+    assert histoire2foot.sauver_charger(liste2,"test_liste2.csv") == liste2
+    assert histoire2foot.sauver_charger(liste3,"test_liste2.csv") == liste3
