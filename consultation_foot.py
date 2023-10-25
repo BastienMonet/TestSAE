@@ -37,7 +37,7 @@ nombre_but=None
 # Ici vos fonctions dédiées aux interactions
 print("\n////////////////////////////////////////////////////")
 while programme_tourne == True:
-    recherche = input("Bonjour, Bienvenue dans le terminal python match quel information recherchez vous?\n 1-Recherche relative aux equipes (tapper \"equipes\")\n 2-Recherche relative aux matchs (tapper \"matchs\")\n 3-Paramètrage des fichier (tapper \"parametres\")\n 4-Quitter (tapper quitter)\n")
+    recherche = input("Bonjour, Bienvenue dans le terminal python match quel information recherchez vous?\n 1-Recherche relative aux equipes (tapper \"equipes\")\n 2-Recherche relative aux matchs (tapper \"matchs\")\n 3-Paramètrage des fichiers (tapper \"parametres\")\n 4-Quitter (tapper quitter)\n")
     if recherche == "equipes":
         Menu_principal=1
 
@@ -75,7 +75,7 @@ while programme_tourne == True:
         Menu_principal=2
 
         while Menu_principal==2:
-            recherche = input("Pour quel type de match voulez vous des renseignements?\n -Si vous voulez les matchs d'un tournoi précis, tapper \" tournois\"\n -Si vous voulez les matchs dans une localisation précise, tapper \"localisations\"\n")
+            recherche = input("Pour quel type de match voulez vous des renseignements?\n -Si vous voulez les matchs d'un tournoi précis, tapper \" tournois\"\n -Si vous voulez les matchs dans une localisation précise, tapper \"localisations\"\n -Si vous voulez revenir en arrière, tapper \"retour\"\n")
 
             if recherche == "tournois":
                 Menu_principal=2.1
@@ -110,6 +110,39 @@ while programme_tourne == True:
                     else:
                         print("Desoler, je ne connais pas de tournoi nommé,\"", recherche, "\"penser bien à mettre les majuscule ou il faut\n" )
 
+            if recherche == "localisations":
+                Menu_principal=2.2
+                while Menu_principal==2.2:
+                    recherche = input("Pour quel localisation voulez vous des informations?\n -Si vous voulez connaitre le nom des localisation disponible, tapper \"noms\"\n -Si vous voulez revenir en arrière, tapper \"retour\"\n")
+
+                    if recherche=="noms":
+                        liste_res=histoire2foot.liste_des_localisations(liste_simple)
+                        print(formatage_liste_de(liste_res))
+                        print("\nsur la droite se trouve les pays, et sur la gauche se trouve les villes")
+                        liste_res=""
+
+                    elif recherche== "retour":
+                        Menu_principal=2
+
+                    elif recherche in histoire2foot.liste_des_localisations(liste_simple):
+                        liste_complexe=histoire2foot.liste_de_match_par_localisation(recherche,liste_simple)
+
+                        nombre_matchs =histoire2foot.nombre_de_match_joué_tournoi(recherche,liste_complexe)
+                        nombre_but= histoire2foot.nb_buts_marques_liste(liste_complexe)
+                        moyen_but= histoire2foot.nombre_moyen_buts_sans_argument(liste_complexe)
+                        début_date=histoire2foot.debut_date_liste(liste_complexe)
+                        fin_date=histoire2foot.fin_date_liste(liste_complexe)
+                        defense=histoire2foot.meilleures_equipes(liste_complexe)
+                        attque=histoire2foot.meilleures_equipes_attaque(liste_complexe)
+                        spectaculaire=histoire2foot.matchs_spectaculaires(liste_complexe)
+
+                        print("La localiastion", recherche, "est l'endroit où a été joué",nombre_matchs ,"matchs depuis le debut, pour un total de", nombre_but,"but(s) marqués\n -Nombre moyen de but:", moyen_but,"\n -date du premier match à",recherche,":",début_date,"\n -date du dernier match connu",fin_date ,"\n -Equipe la plus défensive (avec nombre de défaite le moins élever):",defense,"\n -Equipe la plus offensive (avec nombre de victoire le plus élever):",attque,"\n -Match le plus spectaculaire(match avec le nombre de but le plus élever)",spectaculaire,"\n")
+                        is_it_true=input("voulez vous afficher la liste des match à",recherche," ? tapper oui si oui, tapper autre chose sinon\n")
+                        if is_it_true == "oui":
+                            print(formatage_liste_de(liste_complexe))
+
+                    else:
+                        print("Desoler, je ne connais pas de tournoi nommé,\"", recherche, "\"penser bien à mettre les majuscule ou il faut\n" )
 
                     
 

@@ -791,6 +791,24 @@ def nombre_de_match_joué_tournoi(tournoi,liste_matchs):
             rep+=1
     return rep
 
+def liste_de_match_par_localisation(equipe,liste_matchs):
+    """retourne la liste des matchs joués par une localisation en paramètre 
+
+    Args:
+        localisation (str): le nom d'une equipe
+        liste_matchs (list): une liste de matchs
+
+    Returns:
+        list: une liste contenant le nom de tout les matchs qui se sont passé dans une localisation
+    """
+    rep=[]
+    for i in range(len(liste_matchs)):
+        if liste_matchs[i][6]== equipe:
+            rep.append(liste_matchs[i])
+        if liste_matchs[i][7]== equipe:
+            rep.append(liste_matchs[i])
+    return rep
+
 
 
 
@@ -890,7 +908,6 @@ def liste_des_tournois(liste_matchs):
 
 def liste_des_localisations(liste_matchs):
     """retourne la liste des villes suivi des pays de la liste 
-    Attention "Friendly" n'est pas un tournoi
 
     Args:
         liste_matchs (list): une liste de matchs
@@ -902,8 +919,8 @@ def liste_des_localisations(liste_matchs):
     for i in range(len(liste_matchs)):
         if liste_matchs[i][6] not in rep:
             rep.append(liste_matchs[i][6])
+        if liste_matchs[i][7] not in rep:
             rep.append(liste_matchs[i][7])
-            rep.append("/")
     return rep
 
 #print(liste_des_localisations(liste1))
