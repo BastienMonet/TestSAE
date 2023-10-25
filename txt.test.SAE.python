@@ -1,0 +1,10 @@
+liste matchs [i][0][:3]
+1978
+
+1978-09-12
+
+liste matchs [i][0][5:7]
+09
+
+liste matchs [i][0][8:]
+09

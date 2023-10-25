@@ -498,7 +498,7 @@ def sauver_charger(liste_matchs,fichier):
     res = charger_matchs(fichier)
     return res
 
-print(sauver_charger(liste2,"test_liste2.csv"))
+#print(sauver_charger(liste2,"test_liste2.csv"))
 
 # Fonctions à implémenter dont il faut également implémenter les tests
 def equipe_perdente_liste(liste_matchs):
