@@ -4,13 +4,21 @@ import csv
 
 # ici votre programme principal
 programme_tourne=True
-recherche_equipes = False
+Menu_principal=0
 
-def formatage_equipe(liste_res):
+
+
+def formatage_liste_de(liste_res):
     liste_res.sort()
     for elt in liste_res:
-        res=print()   
+        res=print(elt)   
     return res
+
+def def_equipe(equipe,liste_simple):
+    print("L'equipe", equipe, "a joué", histoire2foot.nombre_de_match_joué() ,"")
+
+
+    
 
 
 liste_simple=histoire2foot.charger_matchs("histoire1.csv")
@@ -18,19 +26,36 @@ liste_simple=histoire2foot.charger_matchs("histoire1.csv")
 intro_nom = False
 intro_tuto = False
 liste_res=""
+nombre_matchs=None
+nombre_but=None
 
 # Ici vos fonctions dédiées aux interactions
-print("\n/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////")
-recherche = input("Bonjour, Bienvenue dans le terminal python match quel information recherchez vous? (equipes/matchs)\n")
+print("\n////////////////////////////////////////////////////")
+recherche = input("Bonjour, Bienvenue dans le terminal python match quel information recherchez vous?\n 1-Recherche relative aux equipes (tapper \"equipes\")\n 2-Recherche relative aux matchs (tapper \"matchs\")\n 3-Paramètrage des fichier (tapper \"parametres\")\n 4-Quitter (tapper quitter)\n")
 while programme_tourne == True:
     if recherche == "equipes":
-        recherche_equipes = True
-        while recherche_equipes == True:
-            recherche = input("Pour quel équipe voulez vous des information? Si vous voulez connaitre le nom des equipes disponible, tappez \"noms\"\n")
+        Menu_principal=1
+        while Menu_principal==1:
+            recherche = input("Pour quel équipe voulez vous des informations? Si vous voulez connaitre le nom des equipes disponible, tappez \"noms\"\n")
+
             if recherche == "noms":
                 liste_res=histoire2foot.liste_des_equipes(liste_simple)
-                print(formatage_equipe(liste_res))
+                print(formatage_liste_de(liste_res))
+                liste_res=""
 
+            elif recherche in histoire2foot.liste_des_equipes(liste_simple):
+                liste_complexe=histoire2foot.liste_de_match_par_equipe(recherche,liste_simple)
+                print(formatage_liste_de(liste_complexe))
+                nombre_matchs =histoire2foot.nombre_de_match_joué(recherche,liste_complexe)
+                nombre_but= histoire2foot.nb_buts_marques_liste(liste_complexe)
+                moyen_but= histoire2foot.nombre_moyen_buts_sans_argument(liste_complexe)
+                ecart_but=histoire2foot.ecart_score
+                premier_gagne=histoire2foot.premiere_victoire(liste_complexe, recherche)
+                ecart_score=histoire2foot.ecart_score_tout(liste_complexe)
+                print("L'equipe", recherche, "a joué",nombre_matchs ,"matchs depuis le debut, pour un total de", nombre_but,"but(s)\n -Nombre moyen de but:", moyen_but,"\n -date premier match gagné:",premier_gagne,"\n -ecart relatif de but:", ecart_score,"dans l'ordre" )
+
+            else:
+                print("Desoler, je ne connais pas l'équipe,", recherche)
     elif recherche == "matchs":
         a=2
 

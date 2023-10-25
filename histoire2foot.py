@@ -334,9 +334,31 @@ def ecart_score(liste_matchs):
             ecart =liste_matchs[i][4] - liste_matchs[i][3]
             rep.append(ecart)
     return rep
-
-
 #print(ecart_score(liste1))
+
+def ecart_score_min(liste_matchs):
+    min=99999999999
+    for elt in ecart_score(liste_matchs):
+        if elt < min:
+            min=elt
+    return min
+
+def ecart_score_max(liste_matchs):
+    max=0
+    for elt in ecart_score(liste_matchs):
+        if elt > max:
+            max=elt
+    return max
+
+def ecart_score_tout(liste_matchs):
+    res= ecart_score_max(liste_matchs) - ecart_score_min(liste_matchs)
+    return res
+
+#print(ecart_score_liste(liste1))
+
+
+
+
 
 
 def plus_gros_scores(liste_matchs):
@@ -666,6 +688,46 @@ def nb_buts_marques_liste(liste_matchs):
 assert nb_buts_marques_liste(liste1) == 11
 
 
+def liste_de_match_par_equipe(equipe,liste_matchs):
+    """retourne la liste des matchs joués par une équipes en paramètre 
+
+    Args:
+        equipe (str): le nom d'une equipe
+        liste_matchs (list): une liste de matchs
+
+    Returns:
+        list: une liste contenant le nom de tout les matchs dans lequel, l'equipe à participé
+    """
+    rep=[]
+    for i in range(len(liste_matchs)):
+        if liste_matchs[i][1]== equipe:
+            rep.append(liste_matchs[i])
+        if liste_matchs[i][2]== equipe:
+            rep.append(liste_matchs[i])
+    return rep
+
+#print(liste_de_match_par_equipe("France",liste1))
+
+def nombre_de_match_joué(equipe,liste_matchs):
+    """retourne le nombre de matchs joués par une equipe 
+
+    Args:
+        equipe (str): le nom d'une equipe
+        liste_matchs (list): une liste de matchs
+
+    Returns:
+        int: le nombre de match joué par une equipe
+    """
+    rep=0
+    for i in range(len(liste_matchs)):
+        if liste_matchs[i][1]== equipe:
+            rep+=1
+        if liste_matchs[i][2]== equipe:
+            rep+=1
+    return rep
+
+
+
 
 
 
@@ -675,7 +737,7 @@ assert nb_buts_marques_liste(liste1) == 11
 
 
 def liste_but(liste_matchs):
-    """Retourne une liste des but totaux marqué lors d'un match 
+    """Retourne une liste des but totaux marqué lors d'un match
 
     Args:
         liste_matchs (tuple): une liste des matchs
@@ -776,3 +838,4 @@ def liste_des_localisations(liste_matchs):
     return rep
 
 #print(liste_des_localisations(liste1))
+
