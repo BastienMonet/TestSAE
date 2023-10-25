@@ -649,6 +649,55 @@ def meilleures_equipes(liste_matchs):
 #print(meilleures_equipes(liste2))
 assert meilleures_equipes(liste2) == ['England']
 
+def liste_nbre_victoire(liste_matchs):
+    """créer un liste qui retourne le nombre des victoires de chaque équipe
+
+    Args:
+        liste_matchs (list): Une liste des matchs
+
+    Returns:
+        Liste: Retourne le nombre des défaites de chaque équipe
+    """    
+    victoire_equipe=[]
+    ind1 = 0
+    ind2 = 0
+    nbre_victoire=0
+    while ind1 < len(equipe_gagnante_liste(liste_matchs)) and ind2 < len(liste_des_equipes(liste_matchs)):
+        if equipe_gagnante_liste(liste_matchs)[ind1] == liste_des_equipes(liste_matchs)[ind2]:
+            nbre_victoire+=1
+        ind1+=1
+        if ind1 > len(equipe_gagnante_liste(liste_matchs))-1:
+            ind2+=1
+            victoire_equipe.append(nbre_victoire)
+            nbre_victoire=0
+            ind1=0
+    return victoire_equipe
+
+#print(liste_nbre_victoire(liste1))
+
+
+def meilleures_equipes_attaque(liste_matchs):
+    """retourne la liste des équipes de la liste qui ont le plus grand nombre de victoires
+
+    Args:
+        liste_matchs (list): une liste de matchs
+
+    Returns:
+        list: la liste des équipes qui ont le plus grand nombre de victoire
+    """
+    rep=[]
+    min=float("-inf")
+    for i in range(len(liste_nbre_victoire(liste_matchs))):
+        if liste_nbre_victoire(liste_matchs)[i] > min:
+            min=liste_nbre_victoire(liste_matchs)[i]
+    for j in range(len(liste_nbre_victoire(liste_matchs))):
+        if liste_nbre_victoire(liste_matchs)[j] == min:
+            rep.append(liste_des_equipes(liste_matchs)[j])
+    return rep
+
+
+#print(meilleures_equipes_attaque(liste1))
+
 
 #def date_devient_int(date):   
 
@@ -840,23 +889,36 @@ def liste_des_localisations(liste_matchs):
 #print(liste_des_localisations(liste1))
 
 def liste_de_match_par_tournoi(tournoi,liste_matchs):
-    """retourne la liste des matchs joués par une équipes en paramètre 
+    """retourne la liste des matchs joués par un tournoi en paramètre 
 
     Args:
-        equipe (str): le nom d'une equipe
+        tournoi (str): le nom d'une equipe
         liste_matchs (list): une liste de matchs
 
     Returns:
-        list: une liste contenant le nom de tout les matchs dans lequel, l'equipe à participé
+        list: une liste contenant le nom de tout les matchs dans lequel, le tournoi est present
     """
     rep=[]
     for i in range(len(liste_matchs)):
         if liste_matchs[i][5]== tournoi:
             rep.append(liste_matchs[i])
+    return rep
+    
+#print(liste_de_match_par_tournoi('FIFA World Cup', liste4))
 
-def date_debut_tournoi(tournoi,liste_matchs):
+
+
+def debut_date_liste(liste_matchs): #retourne la première date d'une liste de matchs
     rep=[]
     rep.append(liste_matchs[0][0])
+    return rep
+
+def fin_date_liste(liste_matchs): #retourne la dernière date d'une liste de matchs
+    rep=[]
+    rep.append(liste_matchs[-1][0])
+    return rep
+
+#print(fin_date_liste(liste1))
     
     
     

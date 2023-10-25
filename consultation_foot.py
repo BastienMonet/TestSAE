@@ -14,6 +14,13 @@ def formatage_liste_de(liste_res):
         res=print(elt)   
     return res
 
+def bonne_equipe():
+    if histoire2foot.plus_de_victoires_que_defaites(liste_complexe, recherche) == True:
+        res="Il s'agit d'une bonne equipe"
+    else:
+        res="Il ne s'agit pas d'une très bonne equipe"
+    return res
+
 
 
     
@@ -55,8 +62,9 @@ while programme_tourne == True:
                 ecart_score=histoire2foot.ecart_score_tout(liste_complexe)
                 sans_défaite=histoire2foot.nb_matchs_sans_defaites(liste_complexe, recherche)
                 resultat=histoire2foot.resultats_equipe(liste_complexe,recherche)
+                niveau_equipe=bonne_equipe()
 
-                print("L'equipe", recherche, "a joué",nombre_matchs ,"matchs depuis le debut, pour un total de", nombre_but,"but(s) marqués\n -Nombre moyen de but:", moyen_but,"\n -date premier match gagné:",premier_gagne,"\n -ecart relatif de but:", ecart_score,"\n -nombre maximum de matchs sans défaite:",sans_défaite,"\nDans l'ordre, nombres de victoire, nombre de défaite, nombre de matchs nul:\n\n\t",resultat,"\n")
+                print("L'equipe", recherche, "a joué",nombre_matchs ,"matchs depuis le debut, pour un total de", nombre_but,"but(s) marqués\n -Nombre moyen de but:", moyen_but,"\n -date premier match gagné:",premier_gagne,"\n -ecart relatif de but:", ecart_score,"\n -nombre maximum de matchs sans défaite:",sans_défaite,"\nDans l'ordre, nombres de victoire, nombre de défaite, nombre de matchs nul:\n\n\t",resultat,"\n",niveau_equipe,"\n")
                 is_it_true=input("voulez vous afficher la liste des match jouer par cette équipe? tapper oui si oui, tapper autre chose sinon\n")
                 if is_it_true == "oui":
                     print(formatage_liste_de(liste_complexe))
@@ -88,15 +96,21 @@ while programme_tourne == True:
                         nombre_matchs =histoire2foot.nombre_de_match_joué(recherche,liste_complexe)
                         nombre_but= histoire2foot.nb_buts_marques_liste(liste_complexe)
                         moyen_but= histoire2foot.nombre_moyen_buts_sans_argument(liste_complexe)
-                        premier_gagne=histoire2foot.premiere_victoire(liste_complexe, recherche)
-                        ecart_score=histoire2foot.ecart_score_tout(liste_complexe)
-                        sans_défaite=histoire2foot.nb_matchs_sans_defaites(liste_complexe, recherche)
-                        resultat=histoire2foot.resultats_equipe(liste_complexe,recherche)
+                        début_date=histoire2foot.debut_date_liste(liste_complexe, recherche)
+                        fin_date=histoire2foot.fin_date_liste(liste_complexe)
+                        max_but=histoire2foot.max_but(liste_complexe)
+                        defense=histoire2foot.meilleures_equipes(liste_complexe)
+                        attque=histoire2foot.meilleures_equipes_attaque(liste_complexe)
+                        spectaculaire=histoire2foot.matchs_spectaculaires(liste_complexe)
 
-                        print("Le tournoi", recherche, "possède",nombre_matchs ,"matchs depuis le debut, pour un total de", nombre_but,"but(s) marqués\n -Nombre moyen de but:", moyen_but,"\n -date premier match gagné:",premier_gagne,"\n -ecart relatif de but:", ecart_score,"\n -nombre maximum de matchs sans défaite:",sans_défaite,"\nDans l'ordre, nombres de victoire, nombre de défaite, nombre de matchs nul:\n\n\t",resultat,"\n")
-                        is_it_true=input("voulez vous afficher la liste des match jouer par cette équipe? tapper oui si oui, tapper autre chose sinon\n")
+                        print("Le tournoi", recherche, "possède",nombre_matchs ,"matchs depuis le debut, pour un total de", nombre_but,"but(s) marqués\n -Nombre moyen de but:", moyen_but,"\n -date du début du tournoi:",début_date,"\n -date du dernier match du tournoi",fin_date ,"\n -Nombre maximum de but lors d'un match",max_but,"\n -Equipe la plus défensive (avec nombre de défaite le moins élever):",defense,"\n -Equipe la plus offensive (avec nombre de victoire le plus élever):",attque,"\n -Match le plus spectaculaire(match avec le nombre de but le plus élever)",spectaculaire,"\n\n\t",resultat,"\n")
+                        is_it_true=input("voulez vous afficher la liste des match du tournoi? tapper oui si oui, tapper autre chose sinon\n")
                         if is_it_true == "oui":
                             print(formatage_liste_de(liste_complexe))
+
+                    else:
+                        print("Desoler, je ne connais pas de tournoi nommé,\"", recherche, "\"penser bien à mettre les majuscule ou il faut\n" )
+
 
                     
 
