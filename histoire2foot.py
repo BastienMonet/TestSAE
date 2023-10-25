@@ -775,6 +775,26 @@ def nombre_de_match_joué(equipe,liste_matchs):
             rep+=1
     return rep
 
+def nombre_de_match_joué_tournoi(tournoi,liste_matchs):
+    """retourne le nombre de matchs joués par un tounoi
+
+    Args:
+        tournoi (str): le nom d'un tournoi
+        liste_matchs (list): une liste de matchs
+
+    Returns:
+        int: le nombre de match joué durant un tournoi
+    """
+    rep=0
+    for i in range(len(liste_matchs)):
+        if liste_matchs[i][5]== tournoi:
+            rep+=1
+    return rep
+
+
+
+
+
 
 
 
@@ -865,7 +885,7 @@ def liste_des_tournois(liste_matchs):
             rep.append(liste_matchs[i][5])
     return rep
 
-#print(liste_des_tournois(liste1))
+#print(liste_des_tournois(liste3))
 
 
 def liste_des_localisations(liste_matchs):
