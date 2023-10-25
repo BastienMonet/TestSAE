@@ -188,8 +188,11 @@ def nombre_moyen_buts(liste_matchs, nom_competition):
     for i in range(len(liste_matchs)):
         if nom_competition in liste_matchs[i][5]:
             somme += int(liste_matchs[i][3]) + int(liste_matchs[i][4])
-            cpt += 1 
-    return somme / cpt
+            cpt += 1
+    try: 
+        return somme / cpt
+    except:
+        return somme
 
 #print(nombre_moyen_buts(liste2, "British Championship"))
 
@@ -207,7 +210,10 @@ def nombre_moyen_buts_sans_argument(liste_matchs):
     for i in range(len(liste_matchs)):
             somme += int(liste_matchs[i][3]) + int(liste_matchs[i][4])
             cpt += 1 
-    return somme / cpt
+    try:
+        return somme / cpt
+    except:
+        return somme
 
 #print(nombre_moyen_buts_tout(liste2))
 
@@ -611,11 +617,13 @@ def liste_nbre_defaite(liste_matchs):
     ind1 = 0
     ind2 = 0
     nbre_defaite=0
-    while ind1 < len(equipe_perdente_liste(liste_matchs)) and ind2 < len(liste_des_equipes(liste_matchs)):
-        if equipe_perdente_liste(liste_matchs)[ind1] == liste_des_equipes(liste_matchs)[ind2]:
+    liste_p=equipe_perdente_liste(liste_matchs)
+    liste_e=liste_des_equipes(liste_matchs)
+    while ind1 < len(liste_p) and ind2 < len(liste_e):
+        if liste_p[ind1] == liste_e[ind2]:
             nbre_defaite+=1
         ind1+=1
-        if ind1 > len(equipe_perdente_liste(liste_matchs))-1:
+        if ind1 > len(liste_p)-1:
             ind2+=1
             defaite_equipe.append(nbre_defaite)
             nbre_defaite=0
@@ -637,16 +645,17 @@ def meilleures_equipes(liste_matchs):
     """
     rep=[]
     min=float("+inf")
-    for i in range(len(liste_nbre_defaite(liste_matchs))):
-        if liste_nbre_defaite(liste_matchs)[i] < min:
+    defaite= liste_nbre_defaite(liste_matchs)
+    for i in range(len(defaite)):
+        if defaite[i] < min:
             min=liste_nbre_defaite(liste_matchs)[i]
-    for j in range(len(liste_nbre_defaite(liste_matchs))):
-        if liste_nbre_defaite(liste_matchs)[j] == min:
+    for j in range(len(defaite)):
+        if defaite[j] == min:
             rep.append(liste_des_equipes(liste_matchs)[j])
     return rep
 
 
-#print(meilleures_equipes(liste2))
+#print(meilleures_equipes(liste4))
 assert meilleures_equipes(liste2) == ['England']
 
 def liste_nbre_victoire(liste_matchs):
@@ -791,6 +800,24 @@ def nombre_de_match_joué_tournoi(tournoi,liste_matchs):
             rep+=1
     return rep
 
+def nombre_de_match_joué_localisation(localisation,liste_matchs):
+    """retourne le nombre de matchs joués par une equipe 
+
+    Args:
+        localisation (str): le nom d'une localisation
+        liste_matchs (list): une liste de matchs
+
+    Returns:
+        int: le nombre de match joué dans une localisation
+    """
+    rep=0
+    for i in range(len(liste_matchs)):
+        if liste_matchs[i][6]== localisation:
+            rep+=1
+        if liste_matchs[i][7]== localisation:
+            rep+=1
+    return rep
+
 def liste_de_match_par_localisation(equipe,liste_matchs):
     """retourne la liste des matchs joués par une localisation en paramètre 
 
@@ -808,6 +835,8 @@ def liste_de_match_par_localisation(equipe,liste_matchs):
         if liste_matchs[i][7]== equipe:
             rep.append(liste_matchs[i])
     return rep
+
+#print(liste_de_match_par_localisation("Lyon",liste3))
 
 
 
@@ -949,6 +978,7 @@ def debut_date_liste(liste_matchs): #retourne la première date d'une liste de m
     rep=[]
     rep.append(liste_matchs[0][0])
     return rep
+
 
 def fin_date_liste(liste_matchs): #retourne la dernière date d'une liste de matchs
     rep=[]
