@@ -166,11 +166,10 @@ while programme_tourne == True:
                 while Menu_principal==3.1:
                     nom_liste_modifier = input("Entrer le nom du fichier que vous voulez ajouter\n -Si vous voulez revenir en arrière tapper \"retour\")\n")
                     test_liste_modifié= histoire2foot.charger_matchs(nom_liste_modifier)
-                    if histoire2foot.est_bien_trie(test_liste_modifié) == True:
-                        histoire2foot.ajouts_matchs(liste_simple,nom_liste_modifier)
-                        histoire2foot.fusionner_matchs(liste_simple,nom_liste_modifier)
-                    else:
-                        print("S'il vous plait, assurer vous que la liste à importer existe et est bien trie,")
+                if histoire2foot.est_bien_trie(test_liste_modifié) == True:
+                    liste_ajouts=histoire2foot.ajouts_matchs(test_liste_modifié,nom_liste_modifier)
+                else:
+                    print("S'il vous plait, assurer vous que la liste à importer existe et est bien trie,")
 
 
 

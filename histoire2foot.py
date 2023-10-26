@@ -528,6 +528,22 @@ def charger_matchs(nom_fichier):
         print("Desoler, je ne connais pas ce fichier, importer bien votre fichier depuis l'endroit ou est situer le programme")
 
 
+def compteur_lignes(nom_fichier):
+    """Compte le nombre de ligne d'un fichier
+
+    Args:
+        nom_fichier (_str): _un fichier.csv
+
+    Returns:
+        _int: Revoie le nombre de ligne du fichier
+    """    
+    fic = open(nom_fichier, 'r')
+    cpt = 0
+    for ligne in fic:
+        cpt = cpt+1
+        fic.close()
+    return cpt
+
 def sauver_matchs(liste_matchs,nom_fichier):
     """sauvegarde dans un fichier au format CSV une liste de matchs
 
