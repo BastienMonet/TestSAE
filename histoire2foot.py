@@ -579,13 +579,6 @@ def effecer_matchs(nom_fichier):
     except:
         print("Une erreur c'est produite")
 
-def ajouts_matchs(nom_fichier, liste_matchs):
-    fic = open(nom_fichier, 'a')
-    for ind in range(len(liste_matchs)):
-        ligne =str(liste_matchs[ind])+'\n'
-        fic.write(ligne)
-    fic.close() 
-
 
 
 def sauver_charger(liste_matchs,fichier):

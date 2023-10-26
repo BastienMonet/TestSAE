@@ -3,18 +3,22 @@ import csv
 
 
 # ici votre programme principal
-programme_tourne=True
+programme_tourne=False
 Menu_principal=0
+nom_fichier="histoire2.csv"
 
 
 
 
 
 def formatage_liste_de(liste_res):
-    liste_res.sort()
-    for elt in liste_res:
-        res=print(elt)   
-    return res
+    try:
+        liste_res.sort()
+        for elt in liste_res:
+            res=print(elt)   
+        return res
+    except:
+        print("Erreur: Veuiller verifier l'intégriter du fichier")
 
 def bonne_equipe():
     if histoire2foot.plus_de_victoires_que_defaites(liste_complexe, recherche) == True:
@@ -26,12 +30,19 @@ def bonne_equipe():
 
 
     
-
-
 liste_simple=histoire2foot.charger_matchs("Sauver_histoire2.csv")
 liste_simple=histoire2foot.sauver_matchs(liste_simple,"Histoire2.csv")
 liste_simple=histoire2foot.charger_matchs("Histoire2.csv")
 
+
+do_you_want=input("voulez vous chargez un fichier? sinon histoire2.csv sera executé par defaut (oui si oui)\n vous pourrez changer à tout moment dans les paramètres\n")
+if do_you_want=="oui":
+    nom_fichier=input("entrer le nom d'un fichier\n") 
+    liste_simple=histoire2foot.charger_matchs(nom_fichier)
+programme_tourne=True
+        
+    
+    
 
 
 intro_nom = False
@@ -42,7 +53,7 @@ tout_est_supprimer=0
 # Ici vos fonctions dédiées aux interactions
 print("\n////////////////////////////////////////////////////")
 while programme_tourne == True:
-    recherche = input("Bonjour, Bienvenue dans le terminal python match quel information recherchez vous?\n 1-Recherche relative aux equipes (tapper \"equipes\")\n 2-Recherche relative aux matchs (tapper \"matchs\")\n 3-Quitter (tapper quitter)\n")
+    recherche = input("Bonjour, Bienvenue dans le terminal python match quel information recherchez vous?\n 1-Recherche relative aux equipes (tapper \"equipes\")\n 2-Recherche relative aux matchs (tapper \"matchs\")\n 3-Accéder au paramètres (tapper \"parametres\")\n 4-Quitter (\"tapper quitter\")\n")
     if recherche == "equipes":
         Menu_principal=1
 
@@ -152,7 +163,33 @@ while programme_tourne == True:
                         print("Desoler, je ne connais pas de localisation nommé,\"", recherche, "\"penser bien à mettre les majuscule ou il faut\n" )
             
             elif recherche== "retour":
-                        Menu_principal=0
+                Menu_principal=0
+
+
+    elif recherche=="parametres":
+        Menu_principal=3
+        while Menu_principal==3:
+            recherche=input("Que voulez vous faire dans les paramètres?\n -Charger un nouveau fichier (tapper \"charger\")\n -Verifier le nombre de match présent (tapper \"verifie\")\n -Si vous voulez revenir en arrière, (tapper \"retour\")\n")
+
+            if recherche=="charger":
+                do_you_want=input("voulez vous chargez un fichier? sinon histoire2.csv sera executé par defaut (oui/non)\n vous pourrez changer à tout moment dans les paramètres\n")
+                if do_you_want=="oui":
+                    nom_fichier=input("entrer le nom d'un fichier\n") 
+                    liste_simple=histoire2foot.charger_matchs(nom_fichier)
+            
+            elif recherche=="verifie":
+                compte_ligne= histoire2foot.compteur_lignes(nom_fichier)
+                print("\nPar defaut (histoire2.csv), le fichier contient:  42484 matchs\nActuellement, le fichier charger contient:  ",compte_ligne,"matchs\n")
+
+            elif recherche=="retour":
+                Menu_principal=0
+
+            else:
+                print("Desoler, cette commande n'existe pas")
+
+
+
+
 
     elif recherche=="quitter":
         programme_tourne=False
