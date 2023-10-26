@@ -130,7 +130,7 @@ while programme_tourne == True:
                         moyen_but= histoire2foot.nombre_moyen_buts_sans_argument(liste_complexe)
                         début_date=histoire2foot.debut_date_liste(liste_complexe)
                         fin_date=histoire2foot.fin_date_liste(liste_complexe)
-                        #defense=histoire2foot.meilleures_equipes(liste_complexe)           # demmande trop de temps
+                        #dfense=histoire2foot.meilleures_equipes(liste_complexe)           # demmande trop de temps
                         #attque=histoire2foot.meilleures_equipes_attaque(liste_complexe)    # demmande trop de temps
                         spectaculaire=histoire2foot.matchs_spectaculaires(liste_complexe)
 
