@@ -247,17 +247,21 @@ def est_bien_trie(liste_matchs):
     Returns:
         bool: True si la liste est bien triée et False sinon
     """ 
-    cpt=0
-    for i in range(1,len(liste_matchs)):
-        if liste_matchs[i-1][0] >= liste_matchs[i][0]:
-            if liste_matchs[i][0] == liste_matchs[i-1][0] and liste_matchs[i-1][1] <= liste_matchs[i][1]:
+    try:
+        cpt=0
+        for i in range(1,len(liste_matchs)):
+            if liste_matchs[i-1][0] >= liste_matchs[i][0]:
+                if liste_matchs[i][0] == liste_matchs[i-1][0] and liste_matchs[i-1][1] <= liste_matchs[i][1]:
+                    cpt+=1
+            else: 
                 cpt+=1
-        else: 
-            cpt+=1
-    if cpt == len(liste_matchs)-1:
-        return True
-    else:
+        if cpt == len(liste_matchs)-1:
+            return True
+        else:
+            return False
+    except:
         return False
+    
 
 #print(est_bien_trie(liste1))
 #print(est_bien_trie(liste2))
