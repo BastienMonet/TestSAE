@@ -471,7 +471,7 @@ def nb_matchs_sans_defaites(liste_matchs, equipe):
     max=0
     cpt=0
     for i in range(len(equipe_gagnante_liste(liste_matchs))):
-        if equipe_gagnante_liste(liste_matchs)[i] == equipe:
+        if equipe_gagnante_liste(liste_matchs)[i] == equipe or equipe_gagnante_liste(liste_matchs)[i] == 0:
             cpt+=1
         if cpt > max:
             max=cpt
@@ -482,7 +482,7 @@ def nb_matchs_sans_defaites(liste_matchs, equipe):
 #print(nb_matchs_sans_defaites(liste2, "England"))
 #print(nb_matchs_sans_defaites(liste1, "France"))
 #print(nb_matchs_sans_defaites(liste4, "Argentina"))
-assert nb_matchs_sans_defaites(liste2, "England") == 2
+assert nb_matchs_sans_defaites(liste2, "England") == 6
 
 def charger_matchs(nom_fichier):
     """charge un fichier de matchs donné au format CSV en une liste de matchs
