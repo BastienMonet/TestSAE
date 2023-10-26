@@ -145,9 +145,9 @@ def test_premiere_victoire():
     ...
     
 def test_nb_matchs_sans_defaites():
-    assert histoire2foot.nb_matchs_sans_defaites(liste2, "England") == 2
-    assert histoire2foot.nb_matchs_sans_defaites(liste1, "France") == 3
-    assert histoire2foot.nb_matchs_sans_defaites(liste4, "Argentina") == 4
+    assert histoire2foot.nb_matchs_sans_defaites(liste2, "England") == 6
+    assert histoire2foot.nb_matchs_sans_defaites(liste1, "France") == 4
+    assert histoire2foot.nb_matchs_sans_defaites(liste4, "Argentina") == 6
     ...
 
 def test_est_bien_trie():

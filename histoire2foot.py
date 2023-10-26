@@ -136,6 +136,23 @@ def victoire_a_domicile(match):
 #print(victoire_a_domicile(match2))
 #print(victoire_a_domicile(match3))
 
+def liste_match_a_domicile(liste_matchs):
+    """Renvoie le nombre de match joué à domicile
+
+    Args:
+        liste_matchs (list): liste des matchs
+
+    Returns:
+        int: le nombre des match joué à domicile
+    """    
+    cpt=0
+    for i in range(len(liste_matchs)):
+        if liste_matchs[i][8]== True:
+            cpt+=1
+    return cpt
+
+#print(liste_match_a_domicile(liste4))
+
 
 def nb_buts_marques(match):
     """indique le nombre total de buts marqués lors de ce match
@@ -491,17 +508,20 @@ def charger_matchs(nom_fichier):
         nom_fichier (str): nom du fichier CSV contenant les matchs
 
     Returns:
-        list: la liste des matchs du fichier
-    """    
-    res = []
-    fic = open(nom_fichier,'r',encoding='utf8')
-    fic.readline()
-    for ligne in fic:
-        l_champs = ligne.split(",")
-        mbool = "T" in l_champs[8]
-        res.append((l_champs[0], l_champs[1], (l_champs[2]), int(l_champs[3]), int(l_champs[4]),l_champs[5], l_champs[6], (l_champs[7]), mbool))
-    fic.close()
-    return res
+        list: la liste des matchs du fichier sauf si le programme ne trouve pas le fichier
+    """
+    try:    
+        res = []
+        fic = open(nom_fichier,'r',encoding='utf8')
+        fic.readline()
+        for ligne in fic:
+            l_champs = ligne.split(",")
+            mbool = "T" in l_champs[8]
+            res.append((l_champs[0], l_champs[1], (l_champs[2]), int(l_champs[3]), int(l_champs[4]),l_champs[5], l_champs[6], (l_champs[7]), mbool))
+        fic.close()
+        return res
+    except:
+        print("Desoler, je ne connais pas ce fichier, importer bien votre fichier depuis l'endroit ou est situer le programme")
 
 
 def sauver_matchs(liste_matchs,nom_fichier):
@@ -512,13 +532,35 @@ def sauver_matchs(liste_matchs,nom_fichier):
         nom_fichier (str): nom du fichier CSV
 
     Returns:
-        None: cette fonction ne retourne rien
-    """    
-    fic = open(nom_fichier, 'w',encoding="utf8")
-    fic.write("date,home team,away team,home score,tournament,city,country,neutral\n")
-    for mat in liste_matchs:
-        fic.write(mat[0]+","+mat[1]+","+mat[2]+","+str(mat[3])+","+str(mat[4])+","+mat[5]+","+mat[6]+","+mat[7]+","+str(mat[8])+"\n")
-    fic.close()
+        None: cette fonction ne retourne rien sauf si le programme ne trouve pas le fichier
+    """  
+    try:  
+        fic = open(nom_fichier, 'w',encoding="utf8")
+        fic.write("date,home team,away team,home score,tournament,city,country,neutral\n")
+        for mat in liste_matchs:
+            fic.write(mat[0]+","+mat[1]+","+mat[2]+","+str(mat[3])+","+str(mat[4])+","+mat[5]+","+mat[6]+","+mat[7]+","+str(mat[8])+"\n")
+        fic.close()
+    except:
+        print("Une erreur c'est produite")
+
+def ajouts_matchs(liste_matchs,nom_fichier):
+    """ajoute dans un fichier au format CSV une liste de matchs
+
+    Args:
+        liste_matchs (list): la liste des matchs à ajouter
+        nom_fichier (str): nom du fichier CSV
+
+    Returns:
+        None: cette fonction ne retourne rien sauf si le programme ne trouve pas le fichier
+    """  
+    try:  
+        fic = open(nom_fichier, 'a',encoding="utf8")
+        fic.write("date,home team,away team,home score,tournament,city,country,neutral\n")
+        for mat in liste_matchs:
+            fic.write(mat[0]+","+mat[1]+","+mat[2]+","+str(mat[3])+","+str(mat[4])+","+mat[5]+","+mat[6]+","+mat[7]+","+str(mat[8])+"\n")
+        fic.close()
+    except:
+        print("Une erreur c'est produite")
 
 
 def sauver_charger(liste_matchs,fichier):
@@ -986,7 +1028,5 @@ def fin_date_liste(liste_matchs): #retourne la dernière date d'une liste de mat
     return rep
 
 #print(fin_date_liste(liste1))
-    
-    
-    
+       
         

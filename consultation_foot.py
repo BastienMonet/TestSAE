@@ -8,6 +8,8 @@ Menu_principal=0
 
 
 
+
+
 def formatage_liste_de(liste_res):
     liste_res.sort()
     for elt in liste_res:
@@ -26,7 +28,11 @@ def bonne_equipe():
     
 
 
-liste_simple=histoire2foot.charger_matchs("histoire1.csv")
+liste_simple=histoire2foot.charger_matchs("Sauver_histoire2.csv")
+liste_simple=histoire2foot.sauver_matchs(liste_simple,"Histoire2.csv")
+liste_simple=histoire2foot.charger_matchs("Histoire2.csv")
+
+
 
 intro_nom = False
 intro_tuto = False
@@ -93,6 +99,7 @@ while programme_tourne == True:
                         liste_complexe=histoire2foot.liste_de_match_par_tournoi(recherche,liste_simple)
 
                         nombre_matchs =histoire2foot.nombre_de_match_joué_tournoi(recherche,liste_complexe)
+
                         nombre_but= histoire2foot.nb_buts_marques_liste(liste_complexe)
                         moyen_but= histoire2foot.nombre_moyen_buts_sans_argument(liste_complexe)
                         début_date=histoire2foot.debut_date_liste(liste_complexe)
@@ -126,6 +133,7 @@ while programme_tourne == True:
                         liste_complexe=histoire2foot.liste_de_match_par_localisation(recherche,liste_simple)
 
                         nombre_matchs =histoire2foot.nombre_de_match_joué_localisation(recherche,liste_complexe)
+
                         nombre_but= histoire2foot.nb_buts_marques_liste(liste_complexe)
                         moyen_but= histoire2foot.nombre_moyen_buts_sans_argument(liste_complexe)
                         début_date=histoire2foot.debut_date_liste(liste_complexe)
@@ -142,16 +150,49 @@ while programme_tourne == True:
 
                     else:
                         print("Desoler, je ne connais pas de localisation nommé,\"", recherche, "\"penser bien à mettre les majuscule ou il faut\n" )
+            
+            elif recherche== "retour":
+                        Menu_principal=0
 
+
+    elif recherche == "parametres":
+        Menu_principal=3
+
+        while Menu_principal==3:
+            recherche = input("quel parametrage voulez vous faire? \n\n\tATTENTION, vous avez par defaut histoire2.csv\"\n\n -Si vous voulez ajouter un fichier (tapper \"ajouts\") -Si vous voulez tout réinitialisez (tapper \"supprimes\")\n")
+
+            if recherche=="ajouts":
+                Menu_principal=3.1
+                while Menu_principal==3.1:
+                    nom_liste_modifier = input("Entrer le nom du fichier que vous voulez ajouter\n -Si vous voulez revenir en arrière tapper \"retour\"")
+                    test_liste_modifié= histoire2foot.charger_matchs
+                    if histoire2foot.est_bien_trie(test_liste_modifié) == True:
+                        histoire2foot.ajouts_matchs(liste_simple,nom_liste_modifier)
+                        histoire2foot.fusionner_matchs(liste_simple,nom_liste_modifier)
+                    else:
+                        print("S'il vous plait, assurer vous que la liste à importer est bien trie,")
+
+
+
+
+            if recherche=="supprimes":
+                a=1
+
+            
+            elif recherche== "retour":
+                Menu_principal=2
+
+            else:
+                print("Desoler, je ne connais pas de fonction nommé,\"", recherche, "\"penser bien au s a la fin\n" )
+
+    
                     
 
 
 
 
 
-            elif recherche== "retour":
-                        Menu_principal=0
-
+            
 
     else:
         print("Veuiller réessayer, cela peut être dû à un problème d'orthographe\n")
