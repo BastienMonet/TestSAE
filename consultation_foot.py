@@ -162,28 +162,17 @@ while programme_tourne == True:
             recherche = input("quel parametrage voulez vous faire? \n\n\tATTENTION, vous avez par defaut histoire2.csv (sauf si vous avez fait des changement bien sur!)\"\n\n -Si vous voulez ajouter un fichier (tapper \"ajouts\")\n -Si vous voulez tout réinitialisez (tapper \"supprimes\")\n -Si vous voulez verifier le nombre de match que vous rechercher, tapper \"verifie\"\n -Si vous voulez revenir en arrière, tapper \"retour\"\n")
 
             if recherche=="ajouts":
-                Menu_principal=3.1
-                while Menu_principal==3.1:
-
-                    if recherche== "retour":
-                        Menu_principal=3
-
-                    elif recherche!="retour":
-                        nom_liste_modifier = input("Entrer le nom du fichier que vous voulez ajouter\n -Si vous voulez revenir en arrière tapper \"retour\")\n")
-                        test_liste_modifié= histoire2foot.charger_matchs(nom_liste_modifier)
-                        if histoire2foot.est_bien_trie(test_liste_modifié) == True:
-                            liste_ajouts=histoire2foot.ajouts_matchs(test_liste_modifié,nom_liste_modifier)
-                    
-                    else:
-                        print("S'il vous plait, assurer vous que la liste à importer existe et est bien trie,")
-
-
-
+                nom_liste_modifier = input("Entrer le nom du fichier que vous voulez ajouter\n -Si vous voulez revenir en arrière tapper \"retour\")\n")                               
+                test_liste_modifié= histoire2foot.charger_matchs(nom_liste_modifier)
+                histoire2foot.sauver_matchs(test_liste_modifié,"histoire2.csv")
+                print("\n--le fichier à bien été ajouter--\n")
+                tout_est_supprimer=0                              
 
             if recherche=="supprimes":
                 supprimer = input("Voulez vous vraiment supprimer tout les fichiers? tapper oui si oui\n")
                 if supprimer=='oui':
                     liste_simple=histoire2foot.effecer_matchs("histoire2.csv")
+                    print("\n--tout les fichiers ont bien été supprimer--\n")
                     tout_est_supprimer=1
                 else:
                     tout_est_supprimer=2
@@ -197,8 +186,9 @@ while programme_tourne == True:
                 if tout_est_supprimer==0:
                     Menu_principal=2
                 else:
-                    print("  ! ! !  Désoler mais pour pouvoir revenir en arrière,il vous faut au moins un match dans le fichier ! ! !  \n")
-
+                    print("\n==================================================================================================================")
+                    print("  ! ! !  Désoler mais pour pouvoir revenir en arrière,il vous faut au moins un match dans le fichier ! ! !  ")
+                    print("==================================================================================================================\n")
             else:
                 print("Desoler, je ne connais pas de fonction nommé,\"", recherche, "\"penser bien au s a la fin" )
                 if tout_est_supprimer !=0:
