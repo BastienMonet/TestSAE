@@ -537,11 +537,11 @@ def compteur_lignes(nom_fichier):
     Returns:
         _int: Revoie le nombre de ligne du fichier
     """    
-    fic = open(nom_fichier, 'r')
+    fic = open(nom_fichier, 'r',encoding="utf8")
     cpt = 0
     for ligne in fic:
         cpt = cpt+1
-        fic.close()
+    fic.close()
     return cpt
 
 def sauver_matchs(liste_matchs,nom_fichier):
@@ -559,6 +559,22 @@ def sauver_matchs(liste_matchs,nom_fichier):
         fic.write("date,home team,away team,home score,tournament,city,country,neutral\n")
         for mat in liste_matchs:
             fic.write(mat[0]+","+mat[1]+","+mat[2]+","+str(mat[3])+","+str(mat[4])+","+mat[5]+","+mat[6]+","+mat[7]+","+str(mat[8])+"\n")
+        fic.close()
+    except:
+        print("Une erreur c'est produite")
+
+
+def effecer_matchs(nom_fichier):
+    """efface TOUT les fichiers au format CSV une liste de matchs
+
+    Args:
+        nom_fichier (str): nom du fichier CSV
+
+    Returns:
+        None: cette fonction ne retourne rien sauf si le programme ne trouve pas le fichier
+    """  
+    try:  
+        fic = open(nom_fichier, 'w',encoding="utf8")
         fic.close()
     except:
         print("Une erreur c'est produite")
