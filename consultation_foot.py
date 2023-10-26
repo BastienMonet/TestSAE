@@ -42,7 +42,7 @@ tout_est_supprimer=0
 # Ici vos fonctions dédiées aux interactions
 print("\n////////////////////////////////////////////////////")
 while programme_tourne == True:
-    recherche = input("Bonjour, Bienvenue dans le terminal python match quel information recherchez vous?\n 1-Recherche relative aux equipes (tapper \"equipes\")\n 2-Recherche relative aux matchs (tapper \"matchs\")\n 3-Paramètrage des fichiers (tapper \"parametres\")\n 4-Quitter (tapper quitter)\n")
+    recherche = input("Bonjour, Bienvenue dans le terminal python match quel information recherchez vous?\n 1-Recherche relative aux equipes (tapper \"equipes\")\n 2-Recherche relative aux matchs (tapper \"matchs\")\n 3-Quitter (tapper quitter)\n")
     if recherche == "equipes":
         Menu_principal=1
 
@@ -154,17 +154,48 @@ while programme_tourne == True:
             elif recherche== "retour":
                         Menu_principal=0
 
-
-    elif recherche == "parametres":
-        Menu_principal=3
-
-        while Menu_principal==3:
-            recherche = input("quel parametrage voulez vous faire? \n\n\tATTENTION, vous avez par defaut histoire2.csv (sauf si vous avez fait des changement bien sur!)\"\n\n -Si vous voulez ajouter un fichier (tapper \"ajouts\")\n -Si vous voulez tout réinitialisez (tapper \"supprimes\")\n -Si vous voulez verifier le nombre de match que vous rechercher, tapper \"verifie\"\n -Si vous voulez revenir en arrière, tapper \"retour\"\n")
-
-            if recherche=="ajouts":
+    elif recherche=="quitter":
+        programme_tourne=False
+                       
+    else:
+        print("Veuiller réessayer, cela peut être dû à un problème d'orthographe\n")       
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+"""if recherche=="ajouts":
                 nom_liste_modifier = input("Entrer le nom du fichier que vous voulez ajouter\n -Si vous voulez revenir en arrière tapper \"retour\")\n")                               
-                test_liste_modifié= histoire2foot.charger_matchs(nom_liste_modifier)
-                histoire2foot.sauver_matchs(test_liste_modifié,"histoire2.csv")
+                liste_simple=histoire2foot.charger_matchs(nom_liste_modifier)
+                liste_simple=histoire2foot.ajouts_matchs("Histoire2.csv",liste_simple)
+
                 print("\n--le fichier à bien été ajouter--\n")
                 tout_est_supprimer=0                              
 
@@ -194,43 +225,10 @@ while programme_tourne == True:
                 if tout_est_supprimer !=0:
                     print("Ne faite pas attention au message au dessus")
                     if tout_est_supprimer==2:
-                        tout_est_supprimer=0
+                        tout_est_supprimer=0"""
 
     
                     
-
-
-
-
-
-            
-
-    else:
-        print("Veuiller réessayer, cela peut être dû à un problème d'orthographe\n")
-
-        a=2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 """intro_nom = False
 name = input("Bonjour, quel est votre nom?\n")
 while intro_nom == False:
@@ -333,7 +331,6 @@ while intro_tuto == True:
     
     else:
         print("non, désoler" ,name,", je ne connais pas cette commande, tapper \"aide\" si vraiment vous êtes perdu ;)")"""
-
 
 
 

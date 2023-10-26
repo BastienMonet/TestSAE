@@ -579,24 +579,13 @@ def effecer_matchs(nom_fichier):
     except:
         print("Une erreur c'est produite")
 
-def ajouts_matchs(liste_matchs,nom_fichier):
-    """ajoute dans un fichier au format CSV une liste de matchs
+def ajouts_matchs(nom_fichier, liste_matchs):
+    fic = open(nom_fichier, 'a')
+    for ind in range(len(liste_matchs)):
+        ligne =str(liste_matchs[ind])+'\n'
+        fic.write(ligne)
+    fic.close() 
 
-    Args:
-        liste_matchs (list): la liste des matchs à ajouter
-        nom_fichier (str): nom du fichier CSV
-
-    Returns:
-        None: cette fonction ne retourne rien sauf si le programme ne trouve pas le fichier
-    """  
-    try:  
-        fic = open(nom_fichier, 'a',encoding="utf8")
-        fic.write("date,home team,away team,home score,tournament,city,country,neutral\n")
-        for mat in liste_matchs:
-            fic.write(mat[0]+","+mat[1]+","+mat[2]+","+str(mat[3])+","+str(mat[4])+","+mat[5]+","+mat[6]+","+mat[7]+","+str(mat[8])+"\n")
-        fic.close()
-    except:
-        print("Une erreur c'est produite")
 
 
 def sauver_charger(liste_matchs,fichier):

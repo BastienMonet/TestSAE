@@ -1,0 +1,4 @@
+ind 0 val ('1970-04-28', 'France', 'Bulgaria', 1, 1, 'Friendly', 'Rouen', 'France', False)
+ind 1 val ('1970-04-28', 'France', 'Romania', 2, 0, 'Friendly', 'Reims', 'France', False)
+ind 2 val ('1970-09-05', 'France', 'Czechoslovakia', 3, 0, 'Friendly', 'Nice', 'France', False)
+ind 3 val ('1970-11-11', 'France', 'Norway', 3, 1, 'UEFA Euro qualification', 'Lyon', 'France', False)
